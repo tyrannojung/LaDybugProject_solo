@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ 
+ <configuration>
+ 	
+ 	<!-- Properties 파일 설정 -->
+ 	<properties resource="config/database.properties" />
+ 	<!-- Alias 설정-->
+ 	<typeAliases>
+ 		<typeAlias alias="division" type="com.shepe.admin.division.DivisionVO" />
+ 		<typeAlias alias="divisionIn" type="com.shepe.admin.division.DivisionInVO" />
+ 		<typeAlias alias="chat" type="com.shepe.client.biz.chat.CommonChatDTO" />
+ 		<typeAlias alias="boot" type="com.shepe.admin.biz.chat.BootVO" />
+ 		<typeAlias alias="chatlist" type="com.shepe.client.biz.chat.ChatRoomVO" />
+ 		<typeAlias alias="counseling" type="com.shepe.admin.biz.chat.CounselingVO" />
+ 	</typeAliases>
+
+ 	<!-- Sql Mapper 설정 -->
+ 	<mappers>
+ 		<mapper resource="mappings/division-mapping.xml" />
+ 		<mapper resource="mappings/chat-mapping.xml" />
+ 		<mapper resource="mappings/boot-mapping.xml" />
+ 		<mapper resource="mappings/counseling-mapping.xml" />
+ 		<mapper resource="mappings/join-mapping.xml" />
+ 	</mappers>
+ </configuration>
