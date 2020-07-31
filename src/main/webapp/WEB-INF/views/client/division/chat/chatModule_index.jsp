@@ -154,10 +154,8 @@
 			  $("#chatbutton").click(function(){
 			    $("#togglechat").fadeToggle();
 			  });
-			  
 			  getUnread();
 			  getInfiniteUnread();
-			  
 			});
     	
     	
@@ -277,7 +275,6 @@
 			webSocket.send(clientconnectout);
 		});
 		
-
 	</script>
 	<script>
 

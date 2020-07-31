@@ -21,7 +21,7 @@
     .pagination {
    		justify-content: center;
 	}
-	h4,p{
+	h4,p,li,font{
 		font-family: 'Nanum Pen Script';
 	}
 	.btn_color {
@@ -34,6 +34,11 @@
 <div class="jumbotron text-center">
   <img src="/shepe/resources/img/2.PNG">
 </div>
+
+<div class="container">
+<section>
+<article>
+
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="index">Navbar</a>
@@ -62,9 +67,7 @@
     </form>
   </div>
 </nav>
-<div class="container">
-<section>
-<article>
+
 <div class="container">
   <table class="table">
     <tr>
@@ -193,6 +196,11 @@
      </div>
      
 <jsp:include page="chat/chatModule_index.jsp"></jsp:include>
+
+
+</article>
+		</section>
+		</div>
 
 <script>
 (function() {

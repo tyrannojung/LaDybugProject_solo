@@ -101,8 +101,8 @@ public class ChatController {
 		return chatService.admin_chatroomList();
 	}
 	
-	@RequestMapping("/chatCompleteCheck")
 	@ResponseBody
+	@RequestMapping("/chatCompleteCheck")
 	public int chatCompleteCheck(@RequestParam String userID) {
 		System.out.println("여기안타나?!!!!");
 		System.out.println(userID);

@@ -90,6 +90,8 @@ var webSocket = new WebSocket("ws://localhost:8090/shepe/admin");
 		if (node.status === "AdminCall") {
 
 			var clientUserID = node.key;
+			sessionStorage.removeItem("clientconnect");
+			sessionStorage.setItem("clientconnect", "connect");
 			
 			$.ajax({
 				type : "POST",
@@ -124,9 +126,6 @@ var webSocket = new WebSocket("ws://localhost:8090/shepe/admin");
 					alert("오류");
 				}
 			});
-
-
-			
 
 		} else if (node.status === "message") {
 
@@ -177,7 +176,6 @@ var webSocket = new WebSocket("ws://localhost:8090/shepe/admin");
 		
 		function goPage(clientId, clientroomnum) {
 			let message = "AdminConnect입니다.";
-			
 			let key = clientId;
 			let room = clientroomnum;
 			

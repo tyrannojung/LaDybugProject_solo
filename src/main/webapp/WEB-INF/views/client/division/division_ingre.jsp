@@ -23,9 +23,6 @@
 	h4,p,li,font {
 		font-family: 'Nanum Pen Script';
 	}
-	.hidden {
-  		display: none;
-	}
 	
   </style>
 </head>
