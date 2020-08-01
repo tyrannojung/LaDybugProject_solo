@@ -1,4 +1,4 @@
-package com.shepe.admin.division.impl;
+package com.shepe.client.biz.division.impl;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,10 +7,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.shepe.admin.division.DivisionInVO;
-import com.shepe.admin.division.DivisionVO;
-import com.shepe.admin.divison.common.divInVO;
-import com.shepe.admin.divison.common.divVO;
+import com.shepe.client.biz.division.DivisionInVO;
+import com.shepe.client.biz.division.DivisionVO;
+import com.shepe.client.biz.division.common.divInVO;
+import com.shepe.client.biz.division.common.divVO;
 
 
 @Repository

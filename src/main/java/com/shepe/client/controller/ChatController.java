@@ -1,4 +1,4 @@
-package com.shepe.client.division;
+package com.shepe.client.controller;
 
 import java.io.IOException;
 import java.net.URLDecoder;

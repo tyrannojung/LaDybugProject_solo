@@ -1,4 +1,4 @@
-package com.shepe.admin.divison.common;
+package com.shepe.client.biz.division.common;
 
 import org.springframework.stereotype.Service;
 

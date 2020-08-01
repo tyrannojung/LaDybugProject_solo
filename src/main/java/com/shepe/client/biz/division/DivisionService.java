@@ -1,4 +1,4 @@
-package com.shepe.admin.division;
+package com.shepe.client.biz.division;
 
 import java.util.List;
 

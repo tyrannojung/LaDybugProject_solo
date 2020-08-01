@@ -1,13 +1,13 @@
-package com.shepe.admin.division.impl;
+package com.shepe.client.biz.division.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shepe.admin.division.DivisionInVO;
-import com.shepe.admin.division.DivisionService;
-import com.shepe.admin.division.DivisionVO;
+import com.shepe.client.biz.division.DivisionInVO;
+import com.shepe.client.biz.division.DivisionService;
+import com.shepe.client.biz.division.DivisionVO;
 
 
 @Service("divisionService")
