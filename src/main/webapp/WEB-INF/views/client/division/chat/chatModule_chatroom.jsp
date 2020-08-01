@@ -65,7 +65,7 @@
 				style="position: absolute;">
 				<input id="chatContent" type="text" class="chat__write"
 					placeholder="Send message" class="chat__write-input"
-					style="margin-bottom: 90px; position: fixed; width: 310px; top: 780px;"
+					style="margin-bottom: 90px; position: fixed; width: 310px; top: 580px;"
 					disabled
 					onkeydown="return enter()"/>
 			</div>
@@ -126,9 +126,9 @@
   				var result = parsed.result;
   				for(var i = 0; i < result.length; i++) {
   					if(result[i][0].value == fromID) {
-  						result[i][0].value ='나';
   						addChat(result[i][0].value, result[i][2].value, result[i][3].value, result[i][4].value);
   					} else {
+  						result[i][0].value ='lady';
   						addAdminChat(result[i][0].value, result[i][2].value, result[i][3].value);
   					}
   				}
@@ -151,9 +151,6 @@
   				'<div class="message__content">' +
   				'<span class="message__bubble" style="word-break:break-all;">' +
   				chatContent +
-  				'</span>' +
-  				'<span class="message__author">'+
-  				chatName +
   				'</span>' +
   				'</div>' +
   				' </li>');

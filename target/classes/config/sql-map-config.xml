@@ -8,8 +8,8 @@
  	<properties resource="config/database.properties" />
  	<!-- Alias 설정-->
  	<typeAliases>
- 		<typeAlias alias="division" type="com.shepe.admin.division.DivisionVO" />
- 		<typeAlias alias="divisionIn" type="com.shepe.admin.division.DivisionInVO" />
+ 		<typeAlias alias="division" type="com.shepe.client.biz.division.DivisionVO" />
+ 		<typeAlias alias="divisionIn" type="com.shepe.client.biz.division.DivisionInVO" />
  		<typeAlias alias="chat" type="com.shepe.client.biz.chat.CommonChatDTO" />
  		<typeAlias alias="boot" type="com.shepe.admin.biz.chat.BootVO" />
  		<typeAlias alias="chatlist" type="com.shepe.client.biz.chat.ChatRoomVO" />

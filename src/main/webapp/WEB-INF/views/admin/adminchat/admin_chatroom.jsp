@@ -227,8 +227,9 @@ webSocket.onmessage = function(message) {
 	
 	var fromID = 'admin';
 	var toID = node.key;
+	var roomcheck = '${chatroomVO.userid}';
 
-	if (node.status === "message") {
+	if (node.status === "message" && node.key === roomcheck) {
 		
 		$('#msg_historyid').append(
   				'<div class="incoming_msg">' + 
