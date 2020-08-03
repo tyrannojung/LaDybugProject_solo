@@ -8,8 +8,8 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-@ServerEndpoint("/admin")
-public class Admin {
+@ServerEndpoint("/chatAdmin")
+public class AdminSocket {
 	
 // 운영자 유저는 하나라고 가정하고 만약 둘 이상의 세션에서 접속을 하면 마지막 세션만 작동한다.
 	private static Session admin = null;
@@ -41,7 +41,7 @@ public class Admin {
 // 뒤 정보는 메시지
 		String msg = split[1];
 // 일반 유저의 key로 탐색후 메시지 전송
-		BroadSocket.sendMessage(key, msg);
+		ClientSocket.sendMessage(key, msg);
 	}
 
 // 접속이 끊기면 위 운영자 세션을 null 처리한다.

@@ -5,10 +5,9 @@ public class DivisionInVO {
 	private String ingredient_nm;
 	private String ingredient_categ;
 	private int ingredient_price;
-	private String ingredient_thumbimg;
+	private String ingredient_thumbName;
 	private String ingredient_amt;
 	private int ingredient_sell_sum;
-	
 	
 	public int getIngredient_no() {
 		return ingredient_no;
@@ -34,12 +33,7 @@ public class DivisionInVO {
 	public void setIngredient_price(int ingredient_price) {
 		this.ingredient_price = ingredient_price;
 	}
-	public String getIngredient_thumbimg() {
-		return ingredient_thumbimg;
-	}
-	public void setIngredient_thumbimg(String ingredient_thumbimg) {
-		this.ingredient_thumbimg = ingredient_thumbimg;
-	}
+
 	public String getIngredient_amt() {
 		return ingredient_amt;
 	}
@@ -53,11 +47,17 @@ public class DivisionInVO {
 		this.ingredient_sell_sum = ingredient_sell_sum;
 	}
 	
+	public String getIngredient_thumbName() {
+		return ingredient_thumbName;
+	}
+	public void setIngredient_thumbName(String ingredient_thumbName) {
+		this.ingredient_thumbName = ingredient_thumbName;
+	}
 	@Override
 	public String toString() {
 		return "DivisionInVO [ingredient_sq=" + ingredient_no + ", ingredient_nm=" + ingredient_nm
 				+ ", ingredient_categ=" + ingredient_categ + ", ingredient_price=" + ingredient_price
-				+ ", ingredient_thumbimg=" + ingredient_thumbimg + ", ingredient_amt=" + ingredient_amt
+				+ ", ingredient_thumbimg=" + ingredient_thumbName + ", ingredient_amt=" + ingredient_amt
 				+ ", ingredient_sell_sum=" + ingredient_sell_sum + "]";
 	}
 	

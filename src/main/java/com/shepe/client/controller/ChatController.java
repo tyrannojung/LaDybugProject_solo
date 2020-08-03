@@ -87,20 +87,6 @@ public class ChatController {
 		}
 	}
 	
-
-	@ResponseBody
-	@RequestMapping("/admin_chatroomone")
-	public ChatRoomVO admin_chatroomone(@RequestParam String userID) {
-		
-		return chatService.admin_chatroomone(userID);
-	}
-	
-	@ResponseBody
-	@RequestMapping("/admin_chatroomList")
-	public List<ChatRoomVO> admin_chatroomList() {
-		return chatService.admin_chatroomList();
-	}
-	
 	@ResponseBody
 	@RequestMapping("/chatCompleteCheck")
 	public int chatCompleteCheck(@RequestParam String userID) {

@@ -11,7 +11,7 @@
 	</select>
 	
 	<select id="getDivisionInList" resultType="divisionIn">
-			SELECT R.ingredient_no, R.ingredient_nm, R.ingredient_categ, R.ingredient_price, R.ingredient_thumbimg, R.ingredient_amt, I.ingredient_sell_sum
+			SELECT R.ingredient_no, R.ingredient_nm, R.ingredient_categ, R.ingredient_price, R.ingredient_thumbName, R.ingredient_amt, I.ingredient_sell_sum
 			from ingredient R INNER join rank_sell_ingredient_list I
 			on R.ingredient_no = I.ingredient_no
 			order by ingredient_sell_sum desc
@@ -41,7 +41,7 @@
 	</select>
 	
 	<select id="getAjaxingrelist" parameterType="java.util.HashMap" resultType="divisionIn">
-			SELECT R.ingredient_no, R.ingredient_nm, R.ingredient_categ, R.ingredient_price, R.ingredient_thumbimg, R.ingredient_amt, I.ingredient_sell_sum
+			SELECT R.ingredient_no, R.ingredient_nm, R.ingredient_categ, R.ingredient_price, R.ingredient_thumbName, R.ingredient_amt, I.ingredient_sell_sum
 			from ingredient R INNER join rank_sell_ingredient_list I
 			on R.ingredient_no = I.ingredient_no
 			where ingredient_categ = #{ingredient_categ}

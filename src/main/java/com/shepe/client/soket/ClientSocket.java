@@ -13,7 +13,7 @@ import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
 @ServerEndpoint("/broadsocket/{userID}")
-public class BroadSocket {
+public class ClientSocket {
 
 	private static Map<String, Session> clientMap = Collections.synchronizedMap(new HashMap<String, Session>());
 
@@ -39,7 +39,7 @@ public class BroadSocket {
 // Session으로 접속 리스트에서 User 클래스를 탐색
 		System.out.println("탑니까?");
 		String key = getKey(clientMap, userSession);
-		Admin.sendMessage(key, message);	
+		AdminSocket.sendMessage(key, message);	
 	}
 
 // 운영자 client가 유저에게 메시지를 보내는 함수
@@ -66,8 +66,7 @@ public class BroadSocket {
 		String key = getKey(clientMap, userSession);
 
 // 운영자 Client에 유저 key로 접속 종료를 알린다.
-			Admin.bye(key);
-			System.out.println("여기타?");
+			AdminSocket.bye(key);
 // 위 유저 접속 리스트에서 유저를 삭제한다.
 			clientMap.remove(key);
 	}

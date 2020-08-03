@@ -2,6 +2,7 @@ package com.shepe.admin.controller;
 
 import java.io.IOException;
 import java.net.URLDecoder;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -37,7 +38,7 @@ public class ChatAdminController {
 	@Autowired
 	private ChatService chatService;
 	
-	@RequestMapping("/admin_index")
+	@RequestMapping("/admin/admin_index")
 	public String adminIndex(HttpServletRequest request) {
 		
 		/////////////추후adminlogin action에 박을것.//////////////////////////////
@@ -51,25 +52,25 @@ public class ChatAdminController {
 	
 ////////////////////////////////////////메세지봇 컨트롤러//////////////////////////////////////////////////////////////
 	
-	@RequestMapping("/messageBoot")
+	@RequestMapping("/admin/messageBoot")
 	public String messageBoot() {
 		return "/admin/adminchat/messageBoot";
 	}
 		
-	@RequestMapping("/startBoot")
+	@RequestMapping("/admin/startBoot")
 	public void startBoot(@RequestParam String startBootContent) throws IOException {
 		startBootContent = URLDecoder.decode(startBootContent, "UTF-8");
 		bootservice.startBoot(startBootContent);
 	}
 	
-	@RequestMapping("/selectCountBoot")
+	@RequestMapping("/admin/selectCountBoot")
 	public void selectCountBoot(@RequestParam String selectNum) throws IOException {
 		selectNum = URLDecoder.decode(selectNum, "UTF-8");
 		bootservice.selectCountBoot(selectNum);
 	}
 		
 	
-	@RequestMapping(value="/qaBoot",produces = "application/text; charset=utf8", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/qaBoot",produces = "application/text; charset=utf8", method=RequestMethod.POST)
 	public void qaBoot(@RequestParam String boot_question, @RequestParam String boot_answer, @RequestParam String boot_choice) throws IOException {
 		
 		boot_question = chatencoding.encoding(boot_question);
@@ -81,14 +82,14 @@ public class ChatAdminController {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	@RequestMapping("/messageBox")
+	@RequestMapping("/admin/messageBox")
 	public String messageBox() {
 		return "/admin/adminchat/admin_chat_box";
 	}
 	
 
 	@ResponseBody 
-	@RequestMapping("/counseling_history")
+	@RequestMapping("/admin/counseling_history")
 	public void counseling(CounselingVO vo) {
 
 		if(vo.getH_ok().equals("1")) {
@@ -98,7 +99,7 @@ public class ChatAdminController {
 		counselingservice.counselingAddAction(vo);
 	}
 	
-	@RequestMapping("/admin_getChatroom")
+	@RequestMapping("/admin/admin_getChatroom")
 	public String admin_testtest(@RequestParam String fromId, @RequestParam String toId, @RequestParam String chatroomnum, Model model) {
 		
 		int chatnum = Integer.parseInt(chatroomnum);
@@ -114,10 +115,23 @@ public class ChatAdminController {
 	
 	
 	@ResponseBody
-	@RequestMapping("/admin_counselingone")
+	@RequestMapping("/admin/admin_counselingone")
 	public CounselingVO admin_counselingone(@RequestParam int consultnum) {
 
 		return counselingservice.admin_counselingone(consultnum);	
+	}
+	
+	@ResponseBody
+	@RequestMapping("/admin/admin_chatroomone")
+	public ChatRoomVO admin_chatroomone(@RequestParam String userID) {
+		
+		return chatService.admin_chatroomone(userID);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/admin/admin_chatroomList")
+	public List<ChatRoomVO> admin_chatroomList() {
+		return chatService.admin_chatroomList();
 	}
 	
 	

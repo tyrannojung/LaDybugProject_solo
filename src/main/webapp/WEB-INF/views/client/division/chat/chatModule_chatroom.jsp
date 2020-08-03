@@ -65,7 +65,7 @@
 				style="position: absolute;">
 				<input id="chatContent" type="text" class="chat__write"
 					placeholder="Send message" class="chat__write-input"
-					style="margin-bottom: 90px; position: fixed; width: 310px; top: 580px;"
+					style="margin-bottom: 90px; position: fixed; width: 310px; top: 780px;"
 					disabled
 					onkeydown="return enter()"/>
 			</div>
