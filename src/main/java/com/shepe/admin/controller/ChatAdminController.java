@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,7 +39,36 @@ public class ChatAdminController {
 	@Autowired
 	private ChatService chatService;
 	
-	@RequestMapping("/admin/admin_index")
+	@GetMapping("/login")
+	public String login(@RequestParam(value = "error", required = false) String error,
+			@RequestParam(value = "logout", required = false) String logout, Model model) {
+		if (error != null) {
+			model.addAttribute("errorMsg", "Invalid AdminName and Password");
+		}
+		if (logout != null) {
+			model.addAttribute("logoutMsg", "You have been logged out successfully");
+		}
+		return "/admin/member/admin_login"; // login.jsp(Custom Login Page)
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/admin/chatSubmit",produces = "application/text; charset=utf8", method=RequestMethod.POST)
+	public void chatSubmit(@RequestParam String fromID, @RequestParam String toID, @RequestParam String chatContent, @RequestParam int chatRoomNum, @RequestParam(value="chatread", required=false) String chatread) throws IOException {
+		
+		int chatreaddata = 0 ;
+		
+		if(chatread != null) { // 맨처음
+			chatreaddata = Integer.parseInt(chatread);
+		} 
+		
+		fromID = URLDecoder.decode(fromID, "UTF-8");
+		toID = URLDecoder.decode(toID, "UTF-8");
+		chatContent = URLDecoder.decode(chatContent, "UTF-8");
+		chatService.submit(fromID, toID, chatContent,chatRoomNum, chatreaddata);	
+
+	}
+	
+	@RequestMapping("/admin/counselerChat")
 	public String adminIndex(HttpServletRequest request) {
 		
 		/////////////추후adminlogin action에 박을것.//////////////////////////////

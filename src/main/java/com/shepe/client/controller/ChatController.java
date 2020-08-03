@@ -46,7 +46,7 @@ public class ChatController {
 		return "/client/join/join";
 	}
 	
-	@RequestMapping("/login")
+	@RequestMapping("/clientlogin")
 	public String login() {
 		return "/client/join/login";
 	}

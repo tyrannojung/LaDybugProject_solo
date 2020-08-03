@@ -62,7 +62,7 @@ function submitcheck(i){
 	</div>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<a class="navbar-brand" href="admin_index">Navbar</a>
+		<a class="navbar-brand" href="counselerChat">Navbar</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarColor01" aria-controls="navbarColor01"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -71,7 +71,7 @@ function submitcheck(i){
 
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="admin_index">Home
+				<li class="nav-item active"><a class="nav-link" href="counselerChat">Home
 						<span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="messageBox">Message

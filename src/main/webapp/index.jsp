@@ -51,21 +51,13 @@
                 <div class="row h-100 align-items-center justify-content-between">
                     <!-- Breaking News -->
                     <div class="col-12 col-sm-6">
-                        <div class="breaking-news">
-                            <div id="breakingNewsTicker" class="ticker">
-                                <ul>
-                                    <li><a href="#">Hello World!</a></li>
-                                    <li><a href="#">Welcome to Colorlib Family.</a></li>
-                                    <li><a href="#">Hello Delicious!</a></li>
-                                </ul>
-                            </div>
-                        </div>
+
                     </div>
 
                     <!-- Top Social Info -->
                     <div class="col-12 col-sm-6">
                         <div class="top-social-info text-right">
-                            <a href="login">로그인</a>
+                            <a href="clientlogin">로그인</a>
                             <a href="join">회원가입</a>
                             <a href="logout">로그아웃</a>
                             <a href="#"></a>

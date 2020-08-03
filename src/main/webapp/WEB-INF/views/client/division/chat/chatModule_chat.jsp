@@ -119,6 +119,7 @@
 				sessionStorage.removeItem("adminconnect");
 				sessionStorage.setItem("adminconnect", "connect");
 				$(".checkone").replaceWith();
+				$("#collectAdmin1").text("연결되었습니다.");
 				return;
 				
 			} else if (onmessagedata === "Adminlogout입니다.") {
@@ -288,6 +289,18 @@
 	}
 	
 	function adminchat(){
+		
+		$('#chatList').append('<li class="incoming-message message">' + 
+				'<img src="/shepe/resources/chatcss/hello.png" class="m-avatar message__avatar" />'+
+  				'<div class="message__content">' +
+  				'<span class="message__bubble" style="word-break:break-all;">' +
+  				'<font id="collectAdmin1" class="text-white">상담원을 연결중입니다 잠시만 기다려주세요<div class="spinner-border text-light spinner-border-sm"></div></font>' +
+  				'</span>' +
+  				'</div>' +
+  				'</li>'		
+		);
+		
+		$('#togglechat').scrollTop($('#togglechat')[0].scrollHeight);
 		
 		let messageconnect = "ClientConnect입니다.";
 		webSocket.send(messageconnect);
