@@ -26,7 +26,7 @@
                 <div class="search-result-box card-box">
                     <!-- end row -->
                     <ul class="nav nav-tabs tabs-bordered">
-                        <li class="nav-item"><a href="#home" data-toggle="tab" aria-expanded="true" class="nav-link active">레시피 <span class="badge badge-success ml-1">50</span></a></li>
+                        <li class="nav-item"><a href="#home" data-toggle="tab" aria-expanded="true" class="nav-link active">레시피 <span class="badge badge-success ml-1">${re_listcount}</span></a></li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="home">
@@ -38,7 +38,7 @@
 											<div class="media">
 												<img class="d-flex mr-3 img-thumbnail"
 													src="/shepe/resources/img/${reList.recipe_complete_img}" height="54"
-													style="width: 255px; height: 350px;">
+													style="width: 255px; height: 200px;">
 												<div class="media-body">
 													<h5 class="media-heading mt-0">
 														<a href="#" class="text-dark">${reList.recipe_nm}</a>
@@ -56,39 +56,81 @@
 										</c:forEach>
 										
 										
-
-										<ul
-											class="pagination justify-content-end pagination-split mt-0">
-											<li class="page-item"><a class="page-link" href="#"
-												aria-label="Previous"><span aria-hidden="true">«</span>
-													<span class="sr-only">Previous</span></a></li>
-											<li class="page-item"><a class="page-link" href="#"
-												aria-label="Next"><span aria-hidden="true">»</span> <span
-													class="sr-only">Next</span></a></li>
+										
+										<ul class="pagination justify-content-end pagination-split mt-0">
+										<c:choose>
+											<c:when test="${re_paging.page <= 1}">
+												<li class="page-item"><button type="button"
+													class="btn btn-outline-primary btn-sm" disabled><i class='fas fa-angle-left' style='font-size:15px'></i></button></li>
+													&nbsp;
+											</c:when>
+											<c:otherwise>
+												 <li class="page-item"><button type="button"
+													class="btn btn-outline-primary btn-sm"><i class='fas fa-angle-left' style='font-size:15px'></i></button></li>
+													&nbsp;
+											</c:otherwise>
+										</c:choose>
+										<c:choose>
+											<c:when test="${re_paging.page >= re_paging.maxpage}">
+												<li class="page-item"><button type="button"
+													class="btn btn-outline-primary btn-sm" disabled><i class='fas fa-angle-right' style='font-size:15px'></i></button></li>
+											</c:when>
+											<c:otherwise>
+												 <li class="page-item"><button type="button"
+													class="btn btn-outline-primary btn-sm"><i class='fas fa-angle-right' style='font-size:15px'></i></button></li>
+											</c:otherwise>
+										</c:choose>
+										
+										
 										</ul>
-									</div>
+
 									<ul class="nav nav-tabs tabs-bordered">
 										<li class="nav-item"><a href="#home" data-toggle="tab"
 											aria-expanded="true" class="nav-link active">식재료
-												<span class="badge badge-success ml-1">50</span>
+												<span class="badge badge-success ml-1">${in_listcount}</span>
 										</a></li>
 									</ul>
 									
-									<div class="tab-content">
-		
 									<c:forEach items="${search_inList}" var="inList">
 									<div class="search-item">
                                         <h4 class="mb-1"><a href="#">${inList.ingredient_nm}</a></h4>
-                                        <div class="font-13 text-success mb-3">https://www.bootdey.com</div>
-                                        <p class="mb-0 text-muted">Dolor posuere proin blandit accumsan senectus netus nullam curae, ornare laoreet adipiscing luctus mauris adipiscing pretium eget fermentum, tristique lobortis est ut metus lobortis tortor tincidunt himenaeos habitant quis dictumst proin odio sagittis purus mi, nec taciti vestibulum quis in sit varius lorem sit metus mi.</p>
+                                        <div class="font-13 text-success mb-3">http://localhost:8090/shepe/ingredient_no=${inList.ingredient_no}</div>
+                                        <p class="mb-0 text-muted">인그리sum=${inList.ingredient_sell_sum} 등등 기타등등 여기에 추가한다.</p>
                                     </div>
 									</c:forEach>
-
-                                    <ul class="pagination justify-content-end pagination-split mt-0">
-                                        <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span> <span class="sr-only">Previous</span></a></li>
-                                        <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span> <span class="sr-only">Next</span></a></li>
-                                    </ul>
-                                    <div class="clearfix"></div>
+										<ul class="pagination justify-content-end pagination-split mt-0">
+											<c:choose>
+												<c:when test="${in_paging.page <= 1}">
+													<li class="page-item"><button type="button"
+															class="btn btn-outline-primary btn-sm" disabled>
+															<i class='fas fa-angle-left' style='font-size: 15px'></i>
+														</button></li>
+													&nbsp;
+											    </c:when>
+											<c:otherwise>
+													<li class="page-item"><button type="button"
+															class="btn btn-outline-primary btn-sm">
+															<i class='fas fa-angle-left' style='font-size: 15px'></i>
+														</button></li>
+													&nbsp;
+											</c:otherwise>
+											</c:choose>
+											<c:choose>
+												<c:when test="${in_paging.page >= in_paging.maxpage}">
+													<li class="page-item"><button type="button"
+															class="btn btn-outline-primary btn-sm" disabled>
+															<i class='fas fa-angle-right' style='font-size: 15px'></i>
+														</button></li>
+												</c:when>
+												<c:otherwise>
+													<li class="page-item"><button type="button"
+															class="btn btn-outline-primary btn-sm">
+															<i class='fas fa-angle-right' style='font-size: 15px'></i>
+														</button></li>
+												</c:otherwise>
+											</c:choose>
+										</ul>
+										<div class="clearfix"></div>
                                 </div>
                             </div>
                         </div>
