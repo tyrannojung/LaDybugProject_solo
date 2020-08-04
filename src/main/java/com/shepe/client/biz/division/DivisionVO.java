@@ -7,6 +7,7 @@ public class DivisionVO {
 	private String recipe_category_how;
 	private String recipe_nm;
 	private String recipe_complete_img;
+	private String recipe_info;
 	private int recipe_cnt;
 	
 	public String getRecipe_no() {
@@ -51,6 +52,14 @@ public class DivisionVO {
 	public void setRecipe_cnt(int recipe_cnt) {
 		this.recipe_cnt = recipe_cnt;
 	}
+	public String getRecipe_info() {
+		return recipe_info;
+	}
+	public void setRecipe_info(String recipe_info) {
+		this.recipe_info = recipe_info;
+	}
+	
+	
 	
 	
 }

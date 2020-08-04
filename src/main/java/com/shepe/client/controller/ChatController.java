@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.shepe.admin.biz.chat.BootService;
 import com.shepe.admin.biz.chat.BootVO;
 import com.shepe.client.biz.chat.ChatEncoding;
-import com.shepe.client.biz.chat.ChatRoomVO;
 import com.shepe.client.biz.chat.ChatService;
 import com.shepe.client.biz.chat.CommonChatDTO;
 import com.shepe.client.join.JoinDAO;

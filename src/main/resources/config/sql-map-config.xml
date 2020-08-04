@@ -23,5 +23,6 @@
  		<mapper resource="mappings/boot-mapping.xml" />
  		<mapper resource="mappings/counseling-mapping.xml" />
  		<mapper resource="mappings/join-mapping.xml" />
+ 		<mapper resource="mappings/search-mapping.xml" />
  	</mappers>
  </configuration>

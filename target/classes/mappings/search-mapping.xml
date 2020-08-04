@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SearchDAO">
+	
+	<select id="getsearch_reCount" resultType="int">
+			SELECT COUNT(*) FROM RECIPE 
+			WHERE recipe_nm LIKE CONCAT('%', #{searchValue}, '%') 
+			OR recipe_info LIKE  CONCAT('%', #{searchValue}, '%') 
+			OR recipe_category_kind LIKE CONCAT('%', #{searchValue}, '%') 
+			OR recipe_category_ing LIKE CONCAT('%', #{searchValue}, '%') 
+			OR recipe_category_how LIKE CONCAT('%', #{searchValue}, '%');
+
+	</select>
+	
+	<select id="getsearch_inCount" resultType="int">
+			SELECT COUNT(*)
+			from ingredient R INNER join rank_sell_ingredient_list I
+			on R.ingredient_no = I.ingredient_no
+			WHERE ingredient_nm LIKE CONCAT('%', #{searchValue}, '%')  
+			OR ingredient_categ LIKE CONCAT('%', #{searchValue}, '%')  
+			OR ingredient_thumbName LIKE CONCAT('%', #{searchValue}, '%') ;
+	</select>
+	
+	<select id="getsearch_reListList" parameterType="java.util.HashMap" resultType="division">
+			SELECT * FROM RECIPE WHERE recipe_nm LIKE CONCAT('%', #{searchValue}, '%') OR recipe_info LIKE CONCAT('%', #{searchValue}, '%') OR recipe_category_kind LIKE CONCAT('%', #{searchValue}, '%') OR recipe_category_ing LIKE CONCAT('%', #{searchValue}, '%') OR recipe_category_how LIKE CONCAT('%', #{searchValue}, '%') ORDER BY RECIPE_CNT DESC  LIMIT #{startpage}, 2;
+	</select>
+	
+	<select id="getsearch_inListList" parameterType="java.util.HashMap" resultType="divisionIn">
+			SELECT R.ingredient_no, R.ingredient_nm, R.ingredient_categ, R.ingredient_price, R.ingredient_thumbName, R.ingredient_amt, I.ingredient_sell_sum
+			from ingredient R INNER join rank_sell_ingredient_list I
+			on R.ingredient_no = I.ingredient_no
+			WHERE ingredient_nm LIKE CONCAT('%', #{searchValue}, '%') OR ingredient_categ LIKE CONCAT('%', #{searchValue}, '%') OR ingredient_thumbName LIKE CONCAT('%', #{searchValue}, '%')
+			order by ingredient_sell_sum desc
+			LIMIT #{startpage}, 5;
+	</select>
+	
+
+
+</mapper>

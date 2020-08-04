@@ -33,8 +33,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <form action="#" method="post">
-                        <input type="search" name="search" placeholder="Type any keywords...">
+                    <form action="searchAction">
+                        <input type="search" name="searchValue" placeholder="Type any keywords...">
                         <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>
                 </div>
@@ -60,7 +60,7 @@
                             <a href="clientlogin">로그인</a>
                             <a href="join">회원가입</a>
                             <a href="logout">로그아웃</a>
-                            <a href="#"></a>
+                            <a href="search">서치</a>
                             <a href="#"></a>
                             <a href="#"></a>
                         </div>
