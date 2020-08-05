@@ -25,7 +25,7 @@ public class DivisionController {
 	
 	
 	@RequestMapping("/getDivision_re")
-	public String divisionlist_recipe(@RequestParam(value="page", required=false) String page,@RequestParam(value="sum", required=false) String sum, PagingVO po, Model model) {
+	public String divisionlist_recipe(@RequestParam(value="page", required=false) String page, @RequestParam(value="sum", required=false) String sum, PagingVO po, Model model) {
 		
 		int pager;
 		
@@ -60,7 +60,7 @@ public class DivisionController {
 	}
 	
 	@RequestMapping("/getDivision_ingre")
-	public String divisionlist_ingre(@RequestParam(value="page", required=false) String page,@RequestParam(value="choice", required=false) String choice, PagingVO po, Model model) {
+	public String divisionlist_ingre(@RequestParam(value="page", required=false) String page, @RequestParam(value="choice", required=false) String choice, PagingVO po, Model model) {
 		
 		int pager;
 		
@@ -94,71 +94,5 @@ public class DivisionController {
 			return "/client/division/divisionAjaxIngreList";
 		}
 	}
-	
-//	@RequestMapping("/getDivision")
-//	public String divisionlist(@RequestParam(value="page", required=false) String page, PagingVO po, Model model) {
-//		
-//		int pager;
-//		
-//		if(page == null) {
-//			pager = 1;
-//		} else {
-//			pager = Integer.parseInt(page);
-//		}
-//		
-//	    int listcount = divisionService.getDivisionCount();
-//
-//		model.addAttribute("paging", commonpaging.paging(pager, listcount, po));
-//		model.addAttribute("divisionList", divisionService.getDivisionList(pager));
-//		return "/client/division/division";
-//	}
-//	
-//	@RequestMapping("/ajaxtest/{sum}")
-//	public String ajax(@PathVariable("sum") String sum, @RequestParam(value="page", required=false) String page, PagingVO po, Model model) {
-//		int pager;
-//		if(page == null) {
-//			pager = 1;
-//		} else {
-//			pager = Integer.parseInt(page);
-//		}
-//		model.addAttribute("divisionList", divisionService.getAjaxList(pager,sum));
-//		int listcount = divisionService.getAjaxCount(sum);
-//		System.out.println("식재료카운트 :" + listcount);
-//		model.addAttribute("paging", commonpaging.paging(pager, listcount, po));
-//		model.addAttribute("sum", sum);
-//		return "/client/division/divisionAjax";
-//	}
-//	
-//	@RequestMapping("/choicePaging")
-//	public String choicepaging(@RequestParam(value="page", required=false) String page, @RequestParam String sum, PagingVO po, Model model) {
-//		int pager;
-//		if(page == null) {
-//			pager = 1;
-//		} else {
-//			pager = Integer.parseInt(page);
-//		}
-//		
-//		model.addAttribute("divisionList", divisionService.getAjaxList(pager,sum));
-//		int listcount = divisionService.getAjaxCount(sum);
-//		model.addAttribute("paging", commonpaging.paging(pager, listcount, po));
-//		model.addAttribute("sum", sum);
-//		return "/client/division/divisionPaging";
-//	}
-//	
-	
-//	@RequestMapping("/ajaxingrelist/{choice}")
-//	public String ajaxingrelist(@PathVariable("choice") String choice, @RequestParam(value="page", required=false) String page, PagingVO po, Model model) {
-//		int pager;
-//		if(page == null) {
-//			pager = 1;
-//		} else {
-//			pager = Integer.parseInt(page);
-//		}
-//		model.addAttribute("ajaxingrelist", divisionService.getAjaxingrelist(pager,choice));
-//		int listcount = divisionService.getAjaxinCount(choice);
-//		model.addAttribute("paging", commonpaging.paging(pager, listcount, po));
-//		model.addAttribute("choice", choice);
-//		return "/client/division/divisionAjaxIngreList";
-//	}
-	
+
 }

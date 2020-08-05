@@ -23,7 +23,6 @@
 </head> 
 
 <body>
-  <jsp:include page="WEB-INF/views/client/division/chat/chatModule_index.jsp"></jsp:include>
 
     <!-- Search Wrapper -->
     <div class="search-wrapper">
@@ -636,13 +635,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="<c:url value ="/resources/js/plugins/plugins.js" />"></script>
     <!-- Active js -->
     <script src="<c:url value ="/resources/js/active.js" />"></script>
-    <script>
-    (function() {
-    	var hidechat = $("#togglechat");
-    	$(hidechat).hide();
-    }());
-    </script>
-    
     
 </body>
 

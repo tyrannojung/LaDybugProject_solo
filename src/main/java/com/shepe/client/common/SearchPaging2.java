@@ -3,9 +3,9 @@ package com.shepe.client.common;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SearchPaging {
+public class SearchPaging2 {
 	
-public PagingVO searchpaging(int repage, int relistcount, PagingVO po, int limit) {
+public PagingVO2 searchpaging2(int repage, int relistcount, PagingVO2 po, int limit) {
 		
 		int page = repage; //현재 패이지
 		int listcount = relistcount; //리스트 총 숫자

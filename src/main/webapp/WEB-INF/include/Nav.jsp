@@ -8,12 +8,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css">
 </head>
 
-<!-- Preloader -->
-<div id="preloader">
-    <i class="circle-preloader"></i>
-    <img src="${pageContext.request.contextPath}/resources/img/core-img/salad.png" alt="">
-</div>
-
 <!-- Search Wrapper -->
 <div class="search-wrapper">
 	<!-- Close Btn -->
@@ -24,13 +18,10 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
-				<form action="#" method="post">
-					<input type="search" name="search"
-						placeholder="Type any keywords...">
-					<button type="submit">
-						<i class="fa fa-search" aria-hidden="true"></i>
-					</button>
-				</form>
+				<form action="searchAction">
+                        <input type="search" name="searchValue" placeholder="Type any keywords...">
+                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </form>
 			</div>
 		</div>
 	</div>
@@ -62,10 +53,10 @@
 						<c:if
 							test="${ member_id == null && kname == null && nname == null}">
 							<div>
-								<a href="login.do">로그인</a> 
-								<a href="joinOption.do">회원가입</a> 
-								<a href="interceptor/myPage.do">마이페이지</a> 
-								<a href="cartList">장바구니</a>
+								<a href="clientlogin">로그인</a> 
+								<a href="join">회원가입</a> 
+								<a href="#">마이페이지</a> 
+								<a href="#">장바구니</a>
 								<a href="#"></a> <a href="#"></a>
 							</div>
 						</c:if>
@@ -73,9 +64,9 @@
 							test="${ member_id != null || kname != null || nname != null }">
 							<div>
 								${ member_nick }${ kname }${ nname }님 반갑습니다! &nbsp;&nbsp;&nbsp;
-								<a href="./logout.do">로그아웃</a> 
-								<a href="./interceptor/myPage.do">마이페이지</a>
-								<a href="cartList">장바구니</a> 
+								<a href="logout">로그아웃</a> 
+								<a href="#">마이페이지</a>
+								<a href="#">장바구니</a> 
 								<a href="#"></a> <a href="#"></a> 
 								<a href="#"></a>
 							</div>
@@ -116,11 +107,11 @@
 						<!-- Nav Start -->
 						<div class="classynav">
 							<ul>
-								<li class="active"><a href="getDivision_re">레시피</a></li>
+								<li><a href="getDivision_re">레시피</a></li>
 								<li><a href="getDivision_ingre">식재료</a></li>
-								<li><a href="getRankLikeRankingListToday.rk">랭크</a></li>
-								<li><a href="getQnaList.do">QnA</a></li>
-								<li><a href="receipe-post.html">공지사항</a></li>
+								<li><a href="#">랭크</a></li>
+								<li><a href="#">QnA</a></li>
+								<li><a href="#">공지사항</a></li>
 							</ul>
 							<!-- Newsletter Form -->
 							<div class="search-btn">

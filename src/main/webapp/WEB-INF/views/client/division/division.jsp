@@ -31,43 +31,8 @@
 </head>
 <body>
 
-<div class="jumbotron text-center">
-  <img src="/shepe/resources/img/2.PNG">
-</div>
-
+<jsp:include page="/WEB-INF/include/Nav.jsp" />
 <div class="container">
-<section>
-<article>
-
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="index">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarColor03">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="index">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="getDivision_re">레시피</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="getDivision_ingre">식재료</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
-
 <div class="container">
   <table class="table">
     <tr>
@@ -143,7 +108,7 @@
 	<div class="container">
 		<div class="row">
 			<c:forEach items="${divisionList}" var="division">
-			  <div class="card col-lg-3 col-md-3 col-6" style="width:13rem; margin:20px 0 24px 0">
+			  <div class="card col-lg-3 col-md-3 col-12" style="width:13rem; margin:20px 0 24px 0">
 			  	<img class="card-img-top img-thumbnail" src="/shepe/resources/img/${division.recipe_complete_img}" alt="image" style="width: 255px;height: 350px;">
 			  	<div class="card-body">
 			    	<h4 class="card-title">${division.recipe_nm}</h4>
@@ -197,9 +162,6 @@
      
 <jsp:include page="chat/chatModule_index.jsp"></jsp:include>
 
-
-</article>
-		</section>
 		</div>
 
 <script>

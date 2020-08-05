@@ -27,7 +27,7 @@ public class SearchDAO {
 	}
 	
 	public List<DivisionVO> getsearch_reListList(int page, String searchValue) {
-		int startpage = (page - 1) * 8;
+		int startpage = (page - 1) * 2;
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("startpage", startpage);
 		map.put("searchValue", searchValue);
@@ -35,7 +35,7 @@ public class SearchDAO {
 	}
 	
 	public List<DivisionInVO> getsearch_inListList(int page, String searchValue) {
-		int startpage = (page - 1) * 8;
+		int startpage = (page - 1) * 5;
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("startpage", startpage);
 		map.put("searchValue", searchValue);

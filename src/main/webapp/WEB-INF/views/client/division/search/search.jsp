@@ -38,7 +38,7 @@
 											<div class="media">
 												<img class="d-flex mr-3 img-thumbnail"
 													src="/shepe/resources/img/${reList.recipe_complete_img}" height="54"
-													style="width: 255px; height: 200px;">
+													style="width: 250px; height: 210px;">
 												<div class="media-body">
 													<h5 class="media-heading mt-0">
 														<a href="#" class="text-dark">${reList.recipe_nm}</a>
@@ -65,8 +65,8 @@
 													&nbsp;
 											</c:when>
 											<c:otherwise>
-												 <li class="page-item"><button type="button"
-													class="btn btn-outline-primary btn-sm"><i class='fas fa-angle-left' style='font-size:15px'></i></button></li>
+												 <li class="page-item">
+												 <a href="searchAction?page=${re_paging.page - 1}&searchValue=${searchValue}&pagevalue=1" class="btn btn-outline-primary btn-sm" role="button"><i class='fas fa-angle-left' style='font-size:15px'></i></a></li>
 													&nbsp;
 											</c:otherwise>
 										</c:choose>
@@ -76,12 +76,11 @@
 													class="btn btn-outline-primary btn-sm" disabled><i class='fas fa-angle-right' style='font-size:15px'></i></button></li>
 											</c:when>
 											<c:otherwise>
-												 <li class="page-item"><button type="button"
-													class="btn btn-outline-primary btn-sm"><i class='fas fa-angle-right' style='font-size:15px'></i></button></li>
+												 <li class="page-item">
+												 	<a href="searchAction?page=${re_paging.page + 1}&searchValue=${searchValue}&pagevalue=1" class="btn btn-outline-primary btn-sm" role="button"><i class='fas fa-angle-right' style='font-size:15px'></i></a>
+												 </li>
 											</c:otherwise>
 										</c:choose>
-										
-										
 										</ul>
 
 									<ul class="nav nav-tabs tabs-bordered">
@@ -98,6 +97,7 @@
                                         <p class="mb-0 text-muted">인그리sum=${inList.ingredient_sell_sum} 등등 기타등등 여기에 추가한다.</p>
                                     </div>
 									</c:forEach>
+									
 										<ul class="pagination justify-content-end pagination-split mt-0">
 											<c:choose>
 												<c:when test="${in_paging.page <= 1}">
@@ -108,10 +108,9 @@
 													&nbsp;
 											    </c:when>
 											<c:otherwise>
-													<li class="page-item"><button type="button"
-															class="btn btn-outline-primary btn-sm">
-															<i class='fas fa-angle-left' style='font-size: 15px'></i>
-														</button></li>
+													<li class="page-item">
+													 	<a href="searchAction?page=${in_paging.page - 1}&searchValue=${searchValue}&pagevalue=2" class="btn btn-outline-primary btn-sm" role="button"><i class='fas fa-angle-left' style='font-size:15px'></i></a>
+													</li>
 													&nbsp;
 											</c:otherwise>
 											</c:choose>
@@ -123,10 +122,9 @@
 														</button></li>
 												</c:when>
 												<c:otherwise>
-													<li class="page-item"><button type="button"
-															class="btn btn-outline-primary btn-sm">
-															<i class='fas fa-angle-right' style='font-size: 15px'></i>
-														</button></li>
+													<li class="page-item">
+														<a href="searchAction?page=${in_paging.page + 1}&searchValue=${searchValue}&pagevalue=2" class="btn btn-outline-primary btn-sm" role="button"><i class='fas fa-angle-right' style='font-size:15px'></i></a>
+													</li>
 												</c:otherwise>
 											</c:choose>
 										</ul>
@@ -143,6 +141,41 @@
     </div>
     <!-- container -->
 </div>
+<script>
+	$(window).scroll(function() {
+		  sessionStorage.scrollTop = $(this).scrollTop();
+		});
+	
+		$(document).ready(function() {
+		  if (sessionStorage.scrollTop != "undefined") {
+		    $(window).scrollTop(sessionStorage.scrollTop);
+		  }
+		  
+		  if($(window).width() < 768) { 
+				$(".media").attr('class','card');
+				$(".media-body").attr('class','card-body');
+				}
+		  if($(window).width() > 768) { 
+				$(".card").attr('class','media');
+				$(".card-body").attr('class','media-body');
+				} 
+		  
+		});
+		
+		$(window).resize(function() { 
+			
+			if($(window).width() < 768) { 
+				$(".media").attr('class','card');
+				$(".media-body").attr('class','card-body');
+				}
+			if($(window).width() > 768) { 
+				$(".card").attr('class','media');
+				$(".card-body").attr('class','media-body');
+				} 
+			
+		});
+
+</script>
 
 </body>
 </html>

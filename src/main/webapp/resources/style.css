@@ -931,21 +931,6 @@ textarea:focus {
       .single-widget .list li a:hover, .single-widget .list li a:focus {
         color: #40ba37; }
 
-.pagination {
-  position: relative;
-  z-index: 1; }
-  .pagination .page-link {
-    padding: 0;
-    font-size: 16px;
-    margin-right: 5px;
-    border: none;
-    color: #474747; }
-    .pagination .page-link:hover, .pagination .page-link:focus {
-      background-color: transparent;
-      color: #40ba37; }
-  .pagination .page-item.active .page-link {
-    background-color: transparent;
-    color: #40ba37; }
 
 /* :: 15.0 Receipe Area */
 .receipe-post-search {

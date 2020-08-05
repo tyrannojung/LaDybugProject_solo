@@ -107,10 +107,6 @@
   		var toID = 'admin';
   		var chatroomnum = sessionStorage.getItem("roomnum");
   		
-		
-		alert(chatroomnum);
-		
-  		
   		$.ajax({
   			type: "POST",
   			url: "chatList",
