@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col-12">
                     <form action="searchAction">
-                        <input type="search" name="searchValue" placeholder="Type any keywords...">
+                        <input type="search" name="searchValue" placeholder="검색어를 입력하세요..">
                         <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>
                 </div>

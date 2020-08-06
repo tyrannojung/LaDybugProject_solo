@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.shepe.client.biz.division.DivisionInVO;
 import com.shepe.client.biz.division.DivisionVO;
 import com.shepe.client.biz.division.SearchService;
+import com.shepe.client.biz.division.SearchVO;
 
 @Service("searchService")
 public class SearchServiceImpl implements SearchService {
@@ -29,6 +30,14 @@ public class SearchServiceImpl implements SearchService {
 	
 	public List<DivisionInVO> getsearch_inListList(int page, String searchValue) {
 		return searchDAO.getsearch_inListList(page, searchValue);
+	}
+	
+	public void search_add(String searchValue) {
+		searchDAO.search_add(searchValue);
+	}
+	
+	public List<SearchVO> searchInputAction(String search_value) {
+		return searchDAO.searchInputAction(search_value);
 	}
 
 }

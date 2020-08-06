@@ -36,6 +36,19 @@
 			LIMIT #{startpage}, 5;
 	</select>
 	
-
+	<insert id="search_add">
+			INSERT INTO search VALUES (#{searchValue}, NOW(), 1)
+	</insert>
+	
+	<select id="search_select" resultType="int">
+			SELECT IFNULL(MAX(search_data_cnt),-1) FROM search WHERE search_data = #{search_data}
+	</select>
+	<update id="search_cnt_update">
+			UPDATE search SET search_data_cnt = search_data_cnt+1 WHERE search_data = #{search_data}
+	</update>
+	
+	<select id="searchInputAction" resultType="search">
+		SELECT * FROM search WHERE search_data LIKE CONCAT(#{search_value}, '%') ORDER BY search_data_cnt DESC ;
+	</select>
 
 </mapper>

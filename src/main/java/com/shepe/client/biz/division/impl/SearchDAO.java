@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.shepe.client.biz.division.DivisionInVO;
 import com.shepe.client.biz.division.DivisionVO;
+import com.shepe.client.biz.division.SearchVO;
 
 @Repository
 public class SearchDAO {
@@ -42,6 +43,19 @@ public class SearchDAO {
 		return mybatis.selectList("SearchDAO.getsearch_inListList", map);
 	}
 	
+	public void search_add(String searchValue) {
+		
+		int cnt = mybatis.selectOne("SearchDAO.search_select", searchValue);
+		
+		if(cnt != -1) {
+			//업데이트 
+			mybatis.update("SearchDAO.search_cnt_update", searchValue);
+		} else {
+			mybatis.insert("SearchDAO.search_add", searchValue);
+		}
+	}
 	
-
+	public List<SearchVO> searchInputAction(String search_value) {
+		return mybatis.selectList("SearchDAO.searchInputAction", search_value);
+	}
 }

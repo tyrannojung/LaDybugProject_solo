@@ -19,13 +19,18 @@
 		<div class="row">
 			<div class="col-12">
 				<form action="searchAction">
-                        <input type="search" name="searchValue" placeholder="Type any keywords...">
+                        <input type="search" id="myInput" name="searchValue" placeholder="검색어를 입력하세요.."  autocomplete="off">
                         <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                         <table class="table table-bordered">
+						    <tbody id="myTable" style ="background-color : white;">
+						    </tbody>
+						  </table>
                     </form>
 			</div>
 		</div>
 	</div>
 </div>
+
 
 <!-- ##### Header Area Start ##### -->
 <header class="header-area">
@@ -138,4 +143,47 @@
     <script src="<c:url value ="/resources/js/plugins/plugins.js" />"></script>
     <!-- Active js -->
     <script src="<c:url value ="/resources/js/active.js" />"></script>
+    <script>
+    $("#myInput").on("keyup", function() {
+    	
+    	let search_value = $(this).val();
+   		let search_value_sum = "";
+   		
+   		if(search_value === "") {
+   			$("#myTable").replaceWith('<tbody id="myTable" style ="background-color : white;"></tbody>');
+   			return;
+   		}
+   		
+  	$.ajax({
+		type : "POST",
+		url : "searchInputAction",
+		data : {
+			search_value: search_value
+		},
+		dataType: "JSON",
+		success : function(result) {
+	        $.each(result, function(index, value){
+	        	
+	        	search_value_sum +='<tr><td>'+ value.search_data +'</td></tr>';
+	        			
+	        });
+	        
+	        search_value_sum= '<tbody id="myTable" style ="background-color : white;">'+ search_value_sum +'</tbody>'
+	        
+	        $("#myTable").replaceWith(search_value_sum);
+		},
+		error: function(request, status, error) {
+			alert("오류");
+		}
+	});
+    
+	    var value = $(this).val().toLowerCase();
+	    $("#myTable tr").filter(function() {
+	      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+	    });
+	  });
+    
+    
+ 
+    </script>
 </html>

@@ -14,6 +14,7 @@
  		<typeAlias alias="boot" type="com.shepe.admin.biz.chat.BootVO" />
  		<typeAlias alias="chatlist" type="com.shepe.client.biz.chat.ChatRoomVO" />
  		<typeAlias alias="counseling" type="com.shepe.admin.biz.chat.CounselingVO" />
+ 		<typeAlias alias="search" type="com.shepe.client.biz.division.SearchVO" />
  	</typeAliases>
 
  	<!-- Sql Mapper 설정 -->
