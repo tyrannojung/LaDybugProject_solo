@@ -78,6 +78,9 @@ function submitcheck(i){
 						Box</a></li>
 				<li class="nav-item"><a class="nav-link" href="messageBoot">messageBoot</a>
 				</li>
+				 <li class="nav-item">
+        <a class="nav-link" href="searchChart">searchChart</a>
+      </li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="text" placeholder="Search">

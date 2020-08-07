@@ -41,14 +41,38 @@
 	</insert>
 	
 	<select id="search_select" resultType="int">
-			SELECT IFNULL(MAX(search_data_cnt),-1) FROM search WHERE search_data = #{search_data}
+			SELECT IFNULL(MAX(search_data_cnt),-1) FROM search WHERE search_data = #{searchValue} AND (DATE_FORMAT(search_date, '%Y-%m-%d') = DATE_FORMAT(NOW(), '%Y-%m-%d'))
 	</select>
 	<update id="search_cnt_update">
-			UPDATE search SET search_data_cnt = search_data_cnt+1 WHERE search_data = #{search_data}
+			UPDATE search SET search_data_cnt = search_data_cnt+1 WHERE search_data = #{search_data} AND (DATE_FORMAT(search_date, '%Y-%m-%d') = DATE_FORMAT(NOW(), '%Y-%m-%d'))
 	</update>
 	
 	<select id="searchInputAction" resultType="search">
-		SELECT * FROM search WHERE search_data LIKE CONCAT(#{search_value}, '%') ORDER BY search_data_cnt DESC ;
+			SELECT search_data,sum(search_data_cnt) as search_data_cnt FROM search WHERE search_data LIKE CONCAT(#{search_value}, '%') GROUP BY search_data  ORDER BY search_data_cnt DESC ;
+	</select>
+	<select id="searchChart_total" resultType="searchAdmin">
+		SELECT search_data,sum(search_data_cnt) as search_data_cnt FROM search GROUP BY search_data ORDER BY search_data_cnt DESC LIMIT 0 , 10
+	</select>
+	
+	<select id="searchChart_month" resultType="searchAdmin">
+		SELECT search_data,sum(search_data_cnt) as search_data_cnt FROM search where DATE(search_date) >= DATE_SUB(NOW(), INTERVAL 30 DAY) GROUP BY search_data ORDER BY search_data_cnt DESC LIMIT 0,10
+	</select>
+	
+	<select id="searchChart_day" resultType="searchAdmin">
+		SELECT search_data,sum(search_data_cnt) as search_data_cnt FROM search WHERE (DATE_FORMAT(search_date, '%Y-%m-%d') = DATE_FORMAT(NOW(), '%Y-%m-%d')) GROUP BY search_data ORDER BY search_data_cnt DESC LIMIT 0,10
+	</select>
+	<select id="search_week_searchAmount" resultType="searchAdmin">
+		select CASE WHEN DAYOFWEEK(search_date) = 1 THEN '일'
+		WHEN DAYOFWEEK(search_date) = 2 THEN '월'
+		WHEN DAYOFWEEK(search_date) = 3 THEN '화'
+		WHEN DAYOFWEEK(search_date) = 4 THEN '수'
+		WHEN DAYOFWEEK(search_date) = 5 THEN '목'
+		WHEN DAYOFWEEK(search_date) = 6 THEN '금'
+		WHEN DAYOFWEEK(search_date) = 7 THEN '토'
+		ELSE '오류' END search_data
+		, sum(search_data_cnt) AS search_data_cnt FROM search
+		where search_date BETWEEN DATE_SUB(NOW(), INTERVAL 7 DAY) AND NOW() 
+		group by DAYOFWEEK(search_date);
 	</select>
 
 </mapper>
