@@ -1,7 +1,7 @@
 package com.shepe.client.biz.division;
 
 public class DivisionInVO {
-	private int ingredient_no;
+	private String ingredient_no;
 	private String ingredient_nm;
 	private String ingredient_categ;
 	private int ingredient_price;
@@ -9,12 +9,14 @@ public class DivisionInVO {
 	private String ingredient_amt;
 	private int ingredient_sell_sum;
 	
-	public int getIngredient_no() {
+	
+	public String getIngredient_no() {
 		return ingredient_no;
 	}
-	public void setIngredient_no(int ingredient_no) {
+	public void setIngredient_no(String ingredient_no) {
 		this.ingredient_no = ingredient_no;
 	}
+	
 	public String getIngredient_nm() {
 		return ingredient_nm;
 	}

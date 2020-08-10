@@ -414,12 +414,12 @@ function faq_detail(faq_category,faq_sq, faq_nm) {
 
 	sessionStorage.removeItem("sendmessagedata");
 	sessionStorage.setItem("sendmessagedata", faq_category);
-	
-	var onmessagedata = "";
+
 	var sendmessagedata = faq_nm;
 	var fromID = 'admin';
 	var toID = '${member_id}';
 	var chatRoomNum =${consultNum} +1;
+	var onmessagedata = ""
 	
 	$.ajax({
 		type : "POST",
@@ -443,6 +443,8 @@ function faq_detail(faq_category,faq_sq, faq_nm) {
 			cache: false,
 			dataType: "JSON",
 			success : function(result) {
+				onmessagedata += result.faq_contents;
+				
 				$('.chat__messages').append(
 				'<li class="incoming-message message">' + 
 				'<img src="/shepe/resources/chatcss/hello.png" class="m-avatar message__avatar" />'+
@@ -457,28 +459,27 @@ function faq_detail(faq_category,faq_sq, faq_nm) {
 				'<div class="media-body">' +
 				' </li>' 
 		        );
-				$('#togglechat').scrollTop($('#togglechat')[0].scrollHeight);
-				onmessagedata = result.faq_contents;
-				alert(onmessagedata);
-				alert(result.faq_contents);
+
+				$.ajax({
+					type : "POST",
+					url : "chatBootSubmit",
+					data : {
+						fromID : encodeURIComponent(fromID),
+						toID : encodeURIComponent(toID),
+						chatContent : encodeURIComponent(onmessagedata),
+						chatRoomNum : chatRoomNum
+					}
+				}).done(function() {
+					$('#togglechat').scrollTop($('#togglechat')[0].scrollHeight);
+				});
+			
 		     },
 			error: function(request, status, error) {
 				alert("오류");
 		    	}
 		});
 		
-		$.ajax({
-			type : "POST",
-			url : "chatBootSubmit",
-			data : {
-				fromID : encodeURIComponent(fromID),
-				toID : encodeURIComponent(toID),
-				chatContent : encodeURIComponent(onmessagedata),
-				chatRoomNum : chatRoomNum
-			}
-		}).done(function() {
-			$('#togglechat').scrollTop($('#togglechat')[0].scrollHeight);
-		});
+		
 	});
 }
 
