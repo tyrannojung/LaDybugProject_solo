@@ -149,17 +149,10 @@ function submitcheck(i){
 					</div>
 				</div>
 
-
-
-
 				<div id="section3" class="mx-auto" style="width: 500px">
 					<h2>답변을 만들어 주세요.</h2>
 					<div id="bootWriteList"></div>
 				</div>
-				
-
-
-
 			</div>
 		</div>
 	</div>

@@ -78,13 +78,19 @@
 								<c:set var="fname2" value="a${i}" />
 								<button id="a${i}" type="button" class="btn btn-secondary mg-bt10 buttonlock" onclick="submitboot('${BootContent[fname2]}','${BootContent[fname1]}');">${BootContent[fname1]}</button>
 							</c:forEach>
+							<span class="faqChat">
+							<button type="button" class="btn btn-secondary btn-sm" style="margin-top: 10px;" onclick="faq_btnclick('2faq')" >#회원/로그인</button>
+							<button type="button" class="btn btn-secondary btn-sm" style="margin-top: 10px;" onclick="faq_btnclick('3faq')">#상품</button>
+							<button type="button" class="btn btn-secondary btn-sm" style="margin-top: 10px; font-size: small;" onclick="faq_btnclick('4faq')">#주문/결제</button>
+							<button type="button" class="btn btn-secondary btn-sm" style="margin-top: 10px;" onclick="faq_btnclick('5faq')">#배송/조회</button>
+							<button type="button" class="btn btn-secondary btn-sm" style="margin-top: 10px;" onclick="faq_btnclick('6faq')">#취소/환불</button>
+							<button type="button" class="btn btn-secondary btn-sm" style="margin-top: 10px; font-size: small;" onclick="faq_btnclick('7faq')">#교환/반품</button>
+							</span>
 							</span>
 							<span class="message__author">lady</span>
 						</div>	
 				   </li>
 				  </div>
-
-
 				</ul>
 			</main>
 			<div class="chat__write--container chat_input"
@@ -215,6 +221,7 @@
 				  .queue(function (next) { 
 				    $(this).css('visibility', 'visible'); 
 				    next(); 
+				    $('#togglechat').scrollTop($('#togglechat')[0].scrollHeight);
 				  });
 			});
 		</script>
@@ -367,6 +374,114 @@
 		}
 	}
 	
+</script>
+<script>
+function faq_btnclick(faqselect) {
+
+	var cate = "";
+	choice1 = faqselect;
+		$.ajax({
+			url: "getClientAjaxFaqList.do?choice="+choice1,
+			cache: false,
+			dataType: "JSON",
+			success : function(result) {
+				$.each(result, function(index, value){
+			    	cate += '<button type="button" class="btn btn-secondary" onclick=javascript:faq_detail(\"'+ value.faq_category +'\",\"'+ value.faq_sq +'\",\"'+ value.faq_nm.replace(/ /gi, "&nbsp;") +'\")>' + value.faq_nm + '</button>'
+                });
+			    	$('.chat__messages').append(
+			        	'<li class="incoming-message message">' + 
+			           	'<img src="/shepe/resources/chatcss/hello.png" class="m-avatar message__avatar" />'+
+			           	'<div class="message__content">' +
+			           	'<span class="message__bubble" style="word-break:break-all;">' +
+			           	cate +
+			           	'</span>' +
+			           	'<span class="message__author">lady</span>'+
+			           	'</div>' +
+			           	'<div class="media-body">' +
+			           	'</li>'
+					);
+			        $('#togglechat').scrollTop($('#togglechat')[0].scrollHeight);
+			},
+				error: function(request, status, error) {
+			    	alert("오류");
+			    }
+		});
+
+}
+
+
+function faq_detail(faq_category,faq_sq, faq_nm) {
+
+	sessionStorage.removeItem("sendmessagedata");
+	sessionStorage.setItem("sendmessagedata", faq_category);
+	
+	var onmessagedata = "";
+	var sendmessagedata = faq_nm;
+	var fromID = 'admin';
+	var toID = '${member_id}';
+	var chatRoomNum =${consultNum} +1;
+	
+	$.ajax({
+		type : "POST",
+		url : "chatBootSubmit",
+		data : {
+			fromID : encodeURIComponent(toID),
+			toID : encodeURIComponent(fromID),
+			chatContent : encodeURIComponent(sendmessagedata),
+			chatRoomNum : chatRoomNum
+		}
+	}).done(function() {
+		$('#chatList').append('<li class="sent-message message">' +
+  				'<div class="message__content">' +
+  				'<span class="message__bubble" style="word-break:break-all;">' +
+  				sendmessagedata +
+  				'</span>' +
+  				'</div>' +
+  				' </li>');
+		$.ajax({
+			url: "detailChatClientFaq.do?faq_sq="+faq_sq,
+			cache: false,
+			dataType: "JSON",
+			success : function(result) {
+				$('.chat__messages').append(
+				'<li class="incoming-message message">' + 
+				'<img src="/shepe/resources/chatcss/hello.png" class="m-avatar message__avatar" />'+
+				'<div class="message__content">' +
+				'<span class="message__bubble" style="word-break:break-all;">' +
+				result.faq_contents + '<br>' +
+				'<div text-align: "center"><button type="button" class="btn btn-secondary dodo" onclick="replayboot()">메뉴</button>' +
+				'<button type="button" class="btn btn-secondary" onclick="adminchat()">상담원연결</button></div>' +
+				'</span>' +
+				'<span class="message__author">lady</span>'+
+				'</div>' +
+				'<div class="media-body">' +
+				' </li>' 
+		        );
+				$('#togglechat').scrollTop($('#togglechat')[0].scrollHeight);
+				onmessagedata = result.faq_contents;
+				alert(onmessagedata);
+				alert(result.faq_contents);
+		     },
+			error: function(request, status, error) {
+				alert("오류");
+		    	}
+		});
+		
+		$.ajax({
+			type : "POST",
+			url : "chatBootSubmit",
+			data : {
+				fromID : encodeURIComponent(fromID),
+				toID : encodeURIComponent(toID),
+				chatContent : encodeURIComponent(onmessagedata),
+				chatRoomNum : chatRoomNum
+			}
+		}).done(function() {
+			$('#togglechat').scrollTop($('#togglechat')[0].scrollHeight);
+		});
+	});
+}
+
 </script>
 
 	</div>

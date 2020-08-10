@@ -115,7 +115,7 @@
 								<li><a href="getDivision_re">레시피</a></li>
 								<li><a href="getDivision_ingre">식재료</a></li>
 								<li><a href="#">랭크</a></li>
-								<li><a href="#">QnA</a></li>
+								<li><a href="getClientFaqList.do">FAQ</a></li>
 								<li><a href="#">공지사항</a></li>
 							</ul>
 							<!-- Newsletter Form -->

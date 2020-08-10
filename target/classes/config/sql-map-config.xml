@@ -16,6 +16,7 @@
  		<typeAlias alias="counseling" type="com.shepe.admin.biz.chat.CounselingVO" />
  		<typeAlias alias="search" type="com.shepe.client.biz.division.SearchVO" />
  		<typeAlias alias="searchAdmin" type="com.shepe.admin.biz.search.SearchAdminVO" />
+ 		<typeAlias alias="faq" type="com.shepe.admin.faq.FaqVO" />
  	</typeAliases>
 
  	<!-- Sql Mapper 설정 -->
@@ -26,5 +27,6 @@
  		<mapper resource="mappings/counseling-mapping.xml" />
  		<mapper resource="mappings/join-mapping.xml" />
  		<mapper resource="mappings/search-mapping.xml" />
+ 		<mapper resource="mappings/faq-mapping.xml" />
  	</mappers>
  </configuration>
