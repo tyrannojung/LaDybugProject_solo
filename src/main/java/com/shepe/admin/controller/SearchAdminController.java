@@ -10,12 +10,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.shepe.admin.biz.search.SearchAdminService;
 import com.shepe.admin.biz.search.SearchAdminVO;
+import com.shepe.admin.faq.FaqService;
+import com.shepe.admin.faq.FaqVO;
+
 
 @Controller
 public class SearchAdminController {
 	
 	@Autowired
 	private SearchAdminService searchAdminService;
+	
+	@Autowired
+	private FaqService faqService;
 	
 	@RequestMapping("/admin/searchChart")
 	public String searchChart() {
@@ -58,6 +64,23 @@ public class SearchAdminController {
 		List<SearchAdminVO> searchChart = searchAdminService.search_week_searchAmount();
 		
 		return searchChartGson.toJson(searchChart);
+	}
+	
+	
+	@RequestMapping("/admin/bootChart")
+	public String bootChart() {
+		
+		return "/admin/adminchat/bootchart";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value="/admin/boot_totalchart", produces = "application/text; charset=utf8")
+	public String boot_totalchart() {
+		Gson boot_total = new Gson();
+		List<FaqVO> boot_totalchart = faqService.boot_totalchart();
+		
+		return boot_total.toJson(boot_totalchart);
 	}
 	
 	

@@ -76,7 +76,7 @@ var webSocket = new WebSocket("ws://localhost:8090/shepe/chatAdmin");
 					let chatcomplete = result.chatcomplete;
 		        	
 		        	if ( chatcomplete == '0' ) {
-		        		chatcomplete = '상담진행중';
+		        		chatcomplete = '상담신청';
 		        		} else {
 		        		chatcomplete = '상담완료' ;
 		        		}

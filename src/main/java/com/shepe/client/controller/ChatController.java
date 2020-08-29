@@ -53,7 +53,7 @@ public class ChatController {
 		int a = chatService.selectChatroomnum(userID);
 
 			session.setAttribute("consultRoomNum", a);
-
+			System.out.println(a);
 		return a;
 	}
 	

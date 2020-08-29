@@ -8,15 +8,13 @@ public class DivisionInVO {
 	private String ingredient_thumbName;
 	private String ingredient_amt;
 	private int ingredient_sell_sum;
-	
-	
+
 	public String getIngredient_no() {
 		return ingredient_no;
 	}
 	public void setIngredient_no(String ingredient_no) {
 		this.ingredient_no = ingredient_no;
 	}
-	
 	public String getIngredient_nm() {
 		return ingredient_nm;
 	}

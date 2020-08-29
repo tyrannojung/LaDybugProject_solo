@@ -96,10 +96,10 @@
 				</ul>
 			</main>
 			<div class="chat__write--container chat_input"
-				style="position: absolute;">
+				>
 				<input id="chatContent" type="text" class="chat__write"
 					placeholder="Send message" class="chat__write-input"
-					style="margin-bottom: 90px; position: fixed; width: 310px; top: 780px;"
+					style="width: 310px;"
 					onkeydown="return enter()" />
 			</div>
 		</div>
@@ -211,6 +211,14 @@
 
 			$(document).ready(function() {
 				
+				if ("mobile" === sessionStorage.getItem("SessionCheckMobile")) {
+					$( '#chatContent' ).css( "top", "580px;" );
+	
+				} else {
+					$( '#chatContent' ).css( "top", "780px;" );
+				}
+				
+				
 				today = new Date()
 				var week = new Array('SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNSEDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY');
 				var month = new Array('JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER');
@@ -288,7 +296,7 @@
 						'<img src="/shepe/resources/chatcss/hello.png" class="m-avatar message__avatar" />'+
 		  				'<div class="message__content">' +
 		  				'<span class="message__bubble" style="word-break:break-all;">' +
-		  				'<button type="button" class="btn btn-secondary buttonlock" onclick="replayboot()">메뉴</button><button type="button" class="btn btn-secondary buttonlock" onclick="adminchat()">상담원연결</button>'+
+		  				'<button type="button" class="btn btn-secondary buttonlock" onclick="replayboot()" style=" margin-right: 10px; ">메뉴</button><button type="button" class="btn btn-secondary buttonlock" onclick="adminchat()">상담원연결</button>'+
 		  				'</span>' +
 		  				'<span class="message__author">lady</span>'+
 		  				'</div>' +
@@ -396,7 +404,7 @@ function faq_btnclick(faqselect) {
 			dataType: "JSON",
 			success : function(result) {
 				$.each(result, function(index, value){
-			    	cate += '<button type="button" class="btn btn-secondary" onclick=javascript:faq_detail(\"'+ value.faq_category +'\",\"'+ value.faq_sq +'\",\"'+ value.faq_nm.replace(/ /gi, "&nbsp;") +'\")>' + value.faq_nm + '</button>'
+			    	cate += '<button type="button" class="btn btn-secondary" style="margin-top: 10px;" onclick=javascript:faq_detail(\"'+ value.faq_category +'\",\"'+ value.faq_sq +'\",\"'+ value.faq_nm.replace(/ /gi, "&nbsp;") +'\")>' + value.faq_nm + '</button>'
                 });
 			    	$('.chat__messages').append(
 			        	'<li class="incoming-message message">' + 
@@ -413,7 +421,6 @@ function faq_btnclick(faqselect) {
 			        $('#togglechat').scrollTop($('#togglechat')[0].scrollHeight);
 			},
 				error: function(request, status, error) {
-			    	alert("오류");
 			    }
 		});
 
@@ -461,13 +468,20 @@ function faq_detail(faq_category,faq_sq, faq_nm) {
 				'<div class="message__content">' +
 				'<span class="message__bubble" style="word-break:break-all;">' +
 				result.faq_contents + '<br>' +
-				'<div text-align: "center"><button type="button" class="btn btn-secondary dodo" onclick="replayboot()">메뉴</button>' +
-				'<button type="button" class="btn btn-secondary" onclick="adminchat()">상담원연결</button></div>' +
 				'</span>' +
 				'<span class="message__author">lady</span>'+
 				'</div>' +
 				'<div class="media-body">' +
-				' </li>' 
+				' </li>' +
+				'<li class="incoming-message message">' + 
+				'<img src="/shepe/resources/chatcss/hello.png" class="m-avatar message__avatar" />'+
+  				'<div class="message__content">' +
+  				'<span class="message__bubble" style="word-break:break-all;">' +
+  				'<button type="button" class="btn btn-secondary buttonlock" onclick="replayboot()" style=" margin-right: 10px; ">메뉴</button><button type="button" class="btn btn-secondary buttonlock" onclick="adminchat()">상담원연결</button>'+
+  				'</span>' +
+  				'<span class="message__author">lady</span>'+
+  				'</div>' +
+  				' </li>'		
 		        );
 
 				$.ajax({
@@ -485,13 +499,16 @@ function faq_detail(faq_category,faq_sq, faq_nm) {
 			
 		     },
 			error: function(request, status, error) {
-				alert("오류");
 		    	}
 		});
-		
-		
 	});
 }
+
+$(window).on("beforeunload", function(){
+	let clientconnectout = "ClientLogout입니다.";			
+	webSocket.send(clientconnectout);
+	sessionStorage.removeItem("sendmessagedata");
+});
 
 </script>
 

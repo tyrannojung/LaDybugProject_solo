@@ -62,10 +62,10 @@
 			
 			
 			<div class="chat__write--container chat_input"
-				style="position: absolute;">
+				>
 				<input id="chatContent" type="text" class="chat__write"
 					placeholder="Send message" class="chat__write-input"
-					style="margin-bottom: 90px; position: fixed; width: 310px; top: 780px;"
+					style="width: 310px;"
 					disabled
 					onkeydown="return enter()"/>
 			</div>
@@ -247,6 +247,13 @@
 		</script>
 		<script>
 		$(document).ready(function() {
+			if ("mobile" === sessionStorage.getItem("SessionCheckMobile")) {
+				$( '#chatContent' ).css( "top", "580px;" );
+
+			} else {
+				$( '#chatContent' ).css( "top", "580px;" );
+			}
+			
 			chatListFunction('ten');
 			var chatRoomNum = sessionStorage.getItem("roomnum");
 			$.ajax({
@@ -279,12 +286,16 @@
 				var today_Recent ="" + week[new Date(today).getDay()] + ", " + month[(strArray[1]).substring(1,2)-1] + ", " +strArray[2] + ", " +strArray[0];
 				$('#Today_recent').append(today_Recent);
 			});
-			
-			
-			
-			
+		});
+		
+		</script>
+		<script>
+		$(window).on("beforeunload", function(){
+			let clientconnectout = "ClientLogout입니다.";			
+			webSocket.send(clientconnectout);
 		});
 		</script>
+		
 
 
 	</div>

@@ -56,18 +56,19 @@
 		<div class="row">
 			<c:forEach items="${divisionInList}" var="division">
 			  <div class="card col-lg-3 col-md-3 col-12" style="width:13rem; margin:20px 0 24px 0">
-			  	<img class="card-img-top img-thumbnail" src="${pageContext.request.contextPath}/resources/img/ingredient-img/${division.ingredient_thumbName}" alt="image" style="width: 255px;height: 350px;">
-			  	<div class="card-body">
-			  		
-			    	<h4 class="card-title">
-			    		<a href="#">
-			    			${division.ingredient_nm}
-			    		</a>
-			    	</h4>
-			    </div>
-			    <div class="card-body d-flex flex-row-reverse align-items-end">	
-			    	<p class="card-text float-right"><font size=2> ${division.ingredient_price}원</font></p>
-			  	</div>
+			  	<a href="#">
+				  	<img class="card-img-top img-thumbnail" src="${pageContext.request.contextPath}/resources/img/ingredient-img/${division.ingredient_thumbName}" alt="image" style="width: 100%;height: 350px;">
+				  </a>
+				  	<div class="card-body">
+				    	<h4 class="card-title">
+				    		<a href="#">
+				    			${division.ingredient_nm}
+				    		</a>
+				    	</h4>
+				    	</div>
+				    	<div class="card-body d-flex flex-row-reverse align-items-end">	
+				    		<p class="card-text float-right"><i class="fa fa-krw"></i><font style="font-size:15px"> ${division.ingredient_price}원</font></p>
+				    	</div>
 			  </div>
 			 </c:forEach>
 		</div>

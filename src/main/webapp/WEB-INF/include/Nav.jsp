@@ -6,12 +6,14 @@
 <head>
 	<!-- Core Stylesheet -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" >
 </head>
+
 
 <!-- Search Wrapper -->
 <div class="search-wrapper">
 	<!-- Close Btn -->
-	<div class="close-btn">
+	<div id="search-close" class="close-btn">
 		<i class="fa fa-times" aria-hidden="true"></i>
 	</div>
 
@@ -19,18 +21,26 @@
 		<div class="row">
 			<div class="col-12">
 				<form action="searchAction">
-                        <input type="search" id="myInput" name="searchValue" placeholder="검색어를 입력하세요.."  autocomplete="off">
-                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                         <table class="table table-bordered">
-						    <tbody id="myTable" style ="background-color : white;">
-						    </tbody>
-						  </table>
-                    </form>
+					<input type="search" id="myInput" name="searchValue" placeholder="검색어를 입력하세요.." autocomplete="off">
+					<button type="submit">
+						<i class="fa fa-search" aria-hidden="true"></i>
+					</button>
+					<table id="searchTable" class="table table-bordered table-hover" style="cursor:pointer">
+						<tbody id="myTable" style="background-color: white;" style="display:none;">
+						</tbody>
+					</table>
+				</form>
 			</div>
 		</div>
 	</div>
 </div>
-
+<script>
+	$('#search-close').click(function(){
+		$("#myTable").replaceWith('<tbody id="myTable" style ="background-color : white;"></tbody>');
+	});
+	
+	
+</script>
 
 <!-- ##### Header Area Start ##### -->
 <header class="header-area">
@@ -44,9 +54,9 @@
 					<div class="breaking-news">
 						<div id="breakingNewsTicker" class="ticker">
 							<ul>
-								<li><a href="#">Hello World!</a></li>
-								<li><a href="#">Welcome to Colorlib Family.</a></li>
-								<li><a href="#">Hello Delicious!</a></li>
+								<li><a href="#">Hello Shepe World!</a></li>
+								<li><a href="#">Welcome to Shepe Family.</a></li>
+								<li><a href="#">Best Delicious Recipe!</a></li>
 							</ul>
 						</div>
 					</div>
@@ -54,26 +64,17 @@
 
 				<!-- Top Social Info -->
 				<div class="col-12 col-sm-6">
-					<div class="top-social-info text-right">
-						<c:if
-							test="${ member_id == null && kname == null && nname == null}">
+					<div class="top-social-info text-right" style="font-size:15px;">
+						<c:if test="${ sessionScope.member_id == null}">
 							<div>
-								<a href="clientlogin">로그인</a> 
-								<a href="join">회원가입</a> 
-								<a href="#">마이페이지</a> 
-								<a href="#">장바구니</a>
-								<a href="#"></a> <a href="#"></a>
+								<a href="/shepe/clientlogin">로그인</a>
+								<a href="/shepe/join">회원가입</a> 
 							</div>
 						</c:if>
-						<c:if
-							test="${ member_id != null || kname != null || nname != null }">
+						<c:if test="${ sessionScope.member_id != null}">
 							<div>
-								${ member_nick }${ kname }${ nname }님 반갑습니다! &nbsp;&nbsp;&nbsp;
-								<a href="logout">로그아웃</a> 
-								<a href="#">마이페이지</a>
-								<a href="#">장바구니</a> 
-								<a href="#"></a> <a href="#"></a> 
-								<a href="#"></a>
+								${ sessionScope.member_id }님 반갑습니다! &nbsp;&nbsp;&nbsp;
+								<a href="/logout">로그아웃</a> 
 							</div>
 						</c:if>
 					</div>
@@ -90,7 +91,7 @@
 				<nav class="classy-navbar justify-content-between" id="deliciousNav">
 
 					<!-- Logo -->
-					<a class="nav-brand" href="index.jsp"><img
+					<a class="nav-brand" href="${pageContext.request.contextPath}/"><img
 						src="${pageContext.request.contextPath}/resources/img/core-img/logo.png"
 						alt=""></a>
 
@@ -112,7 +113,7 @@
 						<!-- Nav Start -->
 						<div class="classynav">
 							<ul>
-								<li><a href="getDivision_re">레시피</a></li>
+								<li><a href=getDivision_re>레시피</a></li>
 								<li><a href="getDivision_ingre">식재료</a></li>
 								<li><a href="#">랭크</a></li>
 								<li><a href="getClientFaqList.do">FAQ</a></li>
@@ -131,7 +132,7 @@
 		</div>
 	</div>
 </header>
-<!-- ##### Footer Area Start ##### -->
+	<!-- ##### Footer Area Start ##### -->
     <!-- ##### All Javascript Files ##### -->
     <!-- jQuery-2.2.4 js -->
     <script src="<c:url value ="/resources/js/jquery/jquery-2.2.4.min.js" />"></script>
@@ -143,7 +144,7 @@
     <script src="<c:url value ="/resources/js/plugins/plugins.js" />"></script>
     <!-- Active js -->
     <script src="<c:url value ="/resources/js/active.js" />"></script>
-    <script>
+     <script>
     $("#myInput").on("keyup", function() {
     	
     	let search_value = $(this).val();
@@ -164,7 +165,7 @@
 		success : function(result) {
 	        $.each(result, function(index, value){
 	        	
-	        	search_value_sum +='<tr><td>'+ value.search_data +'</td></tr>';
+	        	search_value_sum +='<tr><td onclick="location.href='+ '\'searchAction?searchValue='+ value.search_data +'\'\">'+ value.search_data +'</td></tr>';
 	        			
 	        });
 	        
@@ -182,8 +183,8 @@
 	      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 	    });
 	  });
-    
-    
+
+       
  
     </script>
 </html>

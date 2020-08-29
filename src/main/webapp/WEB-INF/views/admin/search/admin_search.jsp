@@ -29,6 +29,7 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/include/adminNav.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/include/chartNav.jsp" />
 <div class="container">
 <div class="d-flex justify-content-around mb-3">
 <div class="chart-container p-2">
@@ -45,7 +46,7 @@
 <div class="chart-container p-2">
 	<canvas id="search_week_searchAmount" class="canvases" width="500" height="250"></canvas>
 </div>
-</div>
+</div>	
 
 </div>
 

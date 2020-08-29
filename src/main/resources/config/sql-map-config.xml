@@ -8,6 +8,7 @@
  	<properties resource="config/database.properties" />
  	<!-- Alias 설정-->
  	<typeAliases>
+ 		<!-- 다운 --> 		
  		<typeAlias alias="division" type="com.shepe.client.biz.division.DivisionVO" />
  		<typeAlias alias="divisionIn" type="com.shepe.client.biz.division.DivisionInVO" />
  		<typeAlias alias="chat" type="com.shepe.client.biz.chat.CommonChatDTO" />
@@ -21,11 +22,12 @@
 
  	<!-- Sql Mapper 설정 -->
  	<mappers>
- 		<mapper resource="mappings/division-mapping.xml" />
+ 		<!-- 다운 -->
+ 		<mapper resource="mappings/join-mapping.xml" />
+		<mapper resource="mappings/division-mapping.xml" />
  		<mapper resource="mappings/chat-mapping.xml" />
  		<mapper resource="mappings/boot-mapping.xml" />
  		<mapper resource="mappings/counseling-mapping.xml" />
- 		<mapper resource="mappings/join-mapping.xml" />
  		<mapper resource="mappings/search-mapping.xml" />
  		<mapper resource="mappings/faq-mapping.xml" />
  	</mappers>

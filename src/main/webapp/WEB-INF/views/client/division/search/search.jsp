@@ -4,6 +4,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix ="fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,12 +17,43 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <link rel="stylesheet" href="/shepe/resources/chatcss/search.css" />
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <style>
+  	.box {
+    background: #fff;
+    padding: 30px;
+    margin: 0 0 24px 0;
+}
+  </style>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/include/Nav.jsp" />
+	
+	
 	<div class="content">
     <div class="container">
         <div class="row">
+
+        
+        <!-- 크롤링 동영상 -->
+        			<ul class="nav nav-tabs tabs-bordered col-lg-12" style="margin-left: 40px;">
+                        <li class="nav-item"><a href="#home" data-toggle="tab" aria-expanded="true" class="nav-link active">인플루언서</a></li>
+                    </ul>
+        
+
+        	<div class="col-xs-12 col-sm-6 col-lg-6">
+				<div class="box rte">
+				    <object class="mx-auto" type="text/html" width="100%" height="281" data="//www.youtube.com/embed/5VLV3VpDLxQ" frameborder="0" allowfullscreen=""></object>
+				</div>
+			</div>
+			
+			<div class="col-xs-12 col-sm-6 col-lg-6">
+				<div class="box rte">
+					<iframe src="https://www.youtube.com/embed/UcMrbi57uy8" width="100%" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+				</div>
+			</div>
+	
+		<!------------------------ -->
+        
             <div class="col-lg-12">
                 <div class="search-result-box card-box">
                     <!-- end row -->
@@ -36,9 +68,11 @@
 										<c:forEach items="${search_reList}" var="reList">
 											<div class="search-item">
 											<div class="media">
-												<img class="d-flex mr-3 img-thumbnail"
-													src="/shepe/resources/img/${reList.recipe_complete_img}" height="54"
-													style="width: 250px; height: 210px;">
+												<a href="#">
+													<img class="d-flex mr-3 img-thumbnail"
+														src="${pageContext.request.contextPath}/resources/img/recipe-com-img/${reList.recipe_complete_img}" height="54"
+														style="width: 250px; height: 210px;">
+												</a>
 												<div class="media-body">
 													<h5 class="media-heading mt-0">
 														<a href="#" class="text-dark">${reList.recipe_nm}</a>
@@ -93,8 +127,9 @@
 									<c:forEach items="${search_inList}" var="inList">
 									<div class="search-item">
                                         <h4 class="mb-1"><a href="#">${inList.ingredient_nm}</a></h4>
-                                        <div class="font-13 text-success mb-3">http://localhost:8090/shepe/ingredient_no=${inList.ingredient_no}</div>
-                                        <p class="mb-0 text-muted">인그리sum=${inList.ingredient_sell_sum} 등등 기타등등 여기에 추가한다.</p>
+                                        <div class="font-13 text-success mb-3"><a href="#">http://localhost:8090/shepe/
+                                        </a></div>
+                                        <p class="mb-0 text-muted">${inList.ingredient_nm}, <fmt:formatNumber type="number" maxFractionDigits="3" value="${inList.ingredient_price}" />원</p>
                                     </div>
 									</c:forEach>
 									

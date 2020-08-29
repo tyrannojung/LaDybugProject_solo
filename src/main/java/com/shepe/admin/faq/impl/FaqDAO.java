@@ -24,6 +24,10 @@ public class FaqDAO {
 		mybatis.update("FaqDAO.updateFaq", vo);
 	}
 	
+	public void plusRC(int faq_sq) {
+		mybatis.update("FaqDAO.plusRC", faq_sq);
+	}
+	
 	public void deleteFaq(FaqVO vo) {
 		System.out.println("FaqDAO delete");
 		mybatis.delete("FaqDAO.deleteFaq", vo);
@@ -41,6 +45,11 @@ public class FaqDAO {
 		return mybatis.selectList("FaqDAO.getFaqList", startpage);
 	}
 	
+	public List<FaqVO> getFaqRC() {
+		System.out.println("FaqDAO RC");
+		return mybatis.selectList("FaqDAO.getFaqTopRC");
+	}
+	
 	// Paging
 	public int getListCount() {
 		return mybatis.selectOne("FaqDAO.getListCount");
@@ -49,8 +58,6 @@ public class FaqDAO {
 	public List<FaqVO> getAjaxFaqList(String choice) {
 		
 		choice = choice.substring(0,1);
-		System.out.println(choice);
-		
 		if(choice.equals("1")) {
 			return mybatis.selectList("FaqDAO.getFaqList", 0);
 		}
@@ -67,7 +74,12 @@ public class FaqDAO {
 		} else if(choice.equals("7")) {
 			choice  ="교환/반품";
 		} 
-		System.out.println("FaqDAO AjaxList " + choice);
+		System.out.println("FaqDAO clientAjaxList " + choice);
 		return mybatis.selectList("FaqDAO.getAjaxFaqList", choice);
-	}	
+	}
+	
+	public List<FaqVO> boot_totalchart() {
+		return mybatis.selectList("FaqDAO.boot_totalchart");
+	}
+	
 }
