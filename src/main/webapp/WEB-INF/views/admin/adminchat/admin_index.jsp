@@ -19,7 +19,7 @@
 </head>
 <body>
 
-<jsp:include page="/WEB-INF/include/AdminNav.jsp" />
+<jsp:include page="/WEB-INF/include/adminNav.jsp"></jsp:include>
 
 
 

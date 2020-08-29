@@ -14,13 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.shepe.admin.biz.chat.BootService;
-import com.shepe.admin.biz.chat.BootVO;
 import com.shepe.client.biz.chat.ChatEncoding;
 import com.shepe.client.biz.chat.ChatService;
 import com.shepe.client.biz.chat.CommonChatDTO;
-import com.shepe.client.join.JoinDAO;
-import com.shepe.client.join.JoinVO;
+
 
 
 @Controller
@@ -31,60 +28,7 @@ public class ChatController {
 	
 	@Autowired
 	private ChatEncoding chatencoding;
-	
-	@Autowired
-	private JoinDAO joindao;
-	
-	@Autowired
-	private BootService bootservice;
-	
-	
-	@RequestMapping("/join")
-	public String join() {
-		return "/client/join/join";
-	}
-	
-	@RequestMapping("/clientlogin")
-	public String login() {
-		return "/client/join/login";
-	}
-	
-	@RequestMapping("/logout")
-	public String logout(HttpServletRequest request) {
-		HttpSession session = request.getSession();
 
-		session.invalidate();
-		return "redirect:/index";
-	}
-	
-	
-	@RequestMapping("/userJoinAction")
-	public String userJoin(JoinVO vo) {
-		joindao.join(vo);
-		return "redirect:/index";
-	}
-	
-	@RequestMapping("/userLoginAction")
-	public String userLoginAction(JoinVO vo, HttpServletRequest request) {
-		
-		HttpSession session = request.getSession();
-		int check = 0;
-		
-		check = joindao.login(vo);
-		
-		if(check == 1) {
-			BootVO bo = bootservice.BootContent();
-			
-			session.setAttribute("BootContent", bo);
-			session.setAttribute("member_id", vo.getUserID());
-			return "redirect:/index";
-			
-		} else {
-			request.setAttribute("usercheck", "idpwno");
-			return "/client/join/login";
-		}
-	}
-	
 	@ResponseBody
 	@RequestMapping("/chatCompleteCheck")
 	public int chatCompleteCheck(@RequestParam String userID) {
@@ -112,6 +56,19 @@ public class ChatController {
 
 		return a;
 	}
+	
+	@ResponseBody
+	@RequestMapping("/selectchatroomDate")
+	public String selectchatroomDate(@RequestParam String userID, @RequestParam String chatroomnum) {
+
+		String a = chatService.selectchatroomDate(userID,chatroomnum);
+		System.out.println(a);
+		return a;
+	}
+		
+	
+	
+	
 		
 		
 	@RequestMapping("/chat")
@@ -226,7 +183,7 @@ public class ChatController {
 		for(int i = 0; i <chatList.size(); i++) {
 			result.append("[{\"value\": \"" + chatencoding.encoding(chatList.get(i).getFromID()) + "\"},");
 			result.append("{\"value\": \"" + chatencoding.encoding(chatList.get(i).getToID()) + "\"},");
-			result.append("{\"value\": \"" + chatList.get(i).getChatContent() + "\"},");
+			result.append("{\"value\": \"" + chatencoding.encoding(chatList.get(i).getChatContent()) + "\"},");
 			result.append("{\"value\": \"" + chatencoding.encoding(chatList.get(i).getChatTime()) + "\"},");
 			result.append("{\"value\": \"" + chatList.get(i).getChatRead() + "\"}]");
 			if(i != chatList.size() -1) result.append(",");
